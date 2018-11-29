@@ -1,0 +1,61 @@
+---
+title: "Figure out where these photos were taken"
+author: "Marissa Lee"
+date: "11/27/2018"
+output: github_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE)
+# note to self -- site names in site_rand.csv have been randomized
+```
+
+This file will allow you to determine where a folder of photos with non-helpful filenames were taken in the field. 
+
+I have a list of sites that were visited, the date they were visited, and a gps location for each site --  `data/sites_rand.csv` and `data/sites_dataDictionary.csv`.  My folder of unidentified photos are here -- `data/photos`.    
+
+I sometimes took more than one photo at a given site, but I didn't take a photo at every site.
+
+We'll start by extracting metadata from photo files.
+```{r}
+library(exifr) # see https://www.r-bloggers.com/extracting-exif-data-from-photos-using-r/
+#getwd() # you should be in GWUAnalysesInR2018
+photopath <- "data/photos"
+photo.df <- read_exif(path = photopath, recursive = T, quiet = F)
+```
+
+This includes a ton of information that we don't need. We just want to keep when and where the photo was taken. Also, this time stamp format is more info than we need and it doesn't match the date format in `sites.csv`. 
+```{r}
+library(tidyverse)
+photo.df %>%
+  select(FileName, DateTimeOriginal) %>%
+  separate(DateTimeOriginal, into = c("date","time"), sep = " ", remove = F) %>%
+  separate(date, into = c("year","month","day"), remove = T) %>%
+  mutate(month = as.integer(month)) %>%
+  mutate(day = as.integer(day)) %>%
+  select(-c(year, time)) -> photo.df.c
+```
+
+Now, load the site data.
+```{r}
+site.df.c <- read_csv(file = "data/sites_rand.csv")
+```
+
+Use the site data collection dates to identify a list of potential sites for each photo. 
+```{r}
+photo.df.c %>%
+  left_join(site.df.c, by = c("month","day")) -> photo.df.ann
+photo.df.ann
+```
+This table tells us that all the photos were taken at MHC-ONE-NCD except IMG_6011.JPG and IMG_5997.JPG
+
+Let's save the table for later.
+```{r}
+write.csv(photo.df.ann, file = "output/finalTab.csv", row.names = F)
+```
+
+Wooo hooo!
+
+

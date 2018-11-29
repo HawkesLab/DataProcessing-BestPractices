@@ -1,0 +1,107 @@
+---
+title: "Data Management"
+author: "Marissa Lee"
+date: "September 21, 2016"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+#packages
+library(ggplot2)
+library(grid)
+
+```
+
+
+### Why is data management important?
+
+- Fosters reproducible science  
+- Saves you from losing and/or duplicating things  
+- Makes it easy to share when you need help or need to help others  
+- Because you need to comply with funding agencies  
+
+  
+### An ideal workflow  
+
+1. Have a meta-data file for each data file
+2. Import raw data and never edit raw data files; think of them as precious artifacts
+3. Make and use code scripts as much as possible
+4. Annotate your code so that the human running the computer knows what is going on
+
+
+### 1. More on meta-data
+
+- Meta-data is just information used to describe your data, there are 3 types...
+-**Descriptive** -- what common fields like column names mean, identify the datatypes in a column, identify the range of values in a column
+-**Structural** -- how different pieces of data relate to one another, such as in a database
+-**Administrative** -- who made it and who can use it
+- Descriptive and structural meta-data is essential if you want someone else to understand your dataset 
+- Descriptive meta-data or "data dictionary" files for raw data are especially useful as a guide to downstream data-tidying
+- Check out DataONE's best practicies page for more information:  https://www.dataone.org/best-practices
+
+
+### 2. Keep a tidy file structure  
+
+- 3 main folders: data, code, output  
+- R-synthesized data folder, sometimes  
+- RMarkdown file or at least a readme.txt file that describes in human language what your scripts do  
+- RProjects can be useful for monitoring files in your project folder  
+
+```{r tidyFolders, echo = TRUE}
+
+# read-in data from the data folder
+dat<-read.table("data/metaDataset.txt", header=TRUE, sep="\t")
+
+# make a plot with that data
+dat.sub<-subset(dat, measCat=="soiln" & traitCat=="percN" & !is.na(InvSpInvArea_cwm) & !is.na(yi)) #make sure the x and y data point are all there
+
+p<-ggplot(dat.sub, aes(x=InvSpInvArea_cwm, y=yi))  + 
+              geom_abline(intercept = 0, slope=0, lty=2) +
+              geom_point(shape=19) + 
+              xlab("Invasive species Leaf %N") + ylab("Soil N effect size")
+p
+# save the plot to the output folder
+pdf(file = "output/myFigure.pdf", width = 2.5, height = 2.5)
+p
+dev.off()
+
+```
+
+
+### 3. Annotate your code
+
+- Hashtag comments within your R scripts
+- RMarkdown for more extended descriptions, especially useful for linking results and analyses through text
+
+
+### 4. Tidy data guidelines
+
+- Don't put multiple variables in one column
+- Variables shouldn't be store in both rows and columns
+- A table should only have 1 type of observational unit
+- R packages that can help: dplyr, tidyr, data.table, reshape2
+
+
+### 5. Scripting tips
+
+- Start with pseudo code
+- Break problems up into small pieces
+- Minimize redundancy by using functions and loops
+- Set up your workspace the start of the script file with info like the packages required, custom functions, file path identifiers, etc.
+
+```{r scripting, echo = TRUE}
+
+# source in my ggplot theme
+source('CODE/mytheme.R')
+
+#make the previous plot pretty and save it as something new
+p + mytheme
+pdf(file = "output/myFigure_pretty.pdf", width = 2.5, height = 2.5)
+p + mytheme
+dev.off()
+
+```
+
+
