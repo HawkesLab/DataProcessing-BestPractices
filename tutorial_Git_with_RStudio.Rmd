@@ -1,15 +1,13 @@
 ---
 title: "How to use git and GitHub with RStudio"
 author: "Marissa Lee"
-date: "11/28/2018"
+date: "12/18/2018"
 output: github_document
 editor_options: 
   chunk_output_type: inline
 ---
 
-There can be headaches involved in getting git, GitHub, and RStudio to all play nice together. Here's a tutorial based on our mini focus group during class today.
-
-Hopefully this tutorial empowers more folks to give it a try.
+There can be headaches involved in getting git, GitHub, and RStudio to all play nice together. Here's a tutorial for getting started. Hopefully this tutorial empowers more folks to give it a try.
 
 ## Getting started
 
@@ -19,7 +17,7 @@ Hopefully this tutorial empowers more folks to give it a try.
     - Mac users -- You should already have Terminal loaded on your computer. Type "Terminal" in spotlight search to find and open it up. Alternatively you can access it by going to `Applications/Utilities/Terminal`
     - PC users -- The easiest thing to do is download "git for Windows" (http://gitforwindows.org). This will set you up with BASH emulation software ("git BASH") that is largely equivalent to the Mac Terminal. You will also get "git" software in this installation. More about "git" later. Atlassian's site has step-by-step instructions for installing this https://www.atlassian.com/git/tutorials/install-git#windows.
   
-## 1. Check that you have git installed
+## Check that you have git installed
 
 Open a Terminal window and simply type this.
 ```{bash, eval = F}
@@ -29,26 +27,28 @@ git
 If that command returned a big block of text starting with...
 `usage: git [--version] [--help] [-C <path>] [-c <name>=<value>] [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path] [-p | --paginate | --no-pager] [--no-replace-objects] [--bare] [--git-dir=<path>] [--work-tree=<path>] [--namespace=<name>]<command> [<args>]`
 
-Then, woohoo you have git. Let's take a sec to appreciate that this is very different from GitHub. 
+Then, woohoo you have git! If you do not have git installed and you are working on a Mac OS, you may need to install (or re-install) Xcode (https://developer.apple.com/xcode/). 
+
+Let's take a sec to appreciate that "git" is very different from "GitHub". 
 
 - *git*: A piece of software that your computer uses to keep track of changes within a given folder. More specifically, this software will "watch" files folders that you choose and keep a detailed log of what those changes are and when they happened.
 - *GitHub*: A website that hosts git-related data.
 
 
-## 2. Clone a GitHub repository using the Terminal
+## Clone a GitHub repository using the Terminal
 
 In the Terminal, navigate to a folder that you would like to clone the repository into. The bash command `cd` means "change directory". For example, I want to navigate to my Desktop, so I'll enter this. If you need some tips on how to navigate folders on your computer using bash, I like this resource: http://jonibologna.com/command-line-primer-primer/
 ```{bash, eval = F}
 cd Desktop/
 ```
 
-Use your internet browser to find a GitHub repo that you'd like to clone. For this example, let's clone the class repo. Go to the green "Clone or download" button to see the repo's online address (e.g. https://...). Copy the address and enter this in to your Terminal window.
+Use your internet browser to find a GitHub repo that you'd like to clone. For this example, let's clone the repo where this tutorial is located (https://github.com/marissalee/DataProcessing-BestPractices). Go to the green "Clone or download" button to see the repo's online address (e.g. https://...). Copy the address and enter this in to your Terminal window.
 ```{bash, eval = F}
-git clone https://github.com/Zanne-Lab/GWUAnalysesInR2018.git
+git clone https://github.com/marissalee/DataProcessing-BestPractices.git
 ```
 
 You will be prompted to enter your GitHub username and password.
-Assuming you typed your password in correctly :), a folder with the repository's name (e.g. `GWUAnalysesInR2018`) should have been created with git tracking in that folder.  Check to make sure that the folder of files have downloaded to the location you specified. You can also check to make sure that git tracking is active in that folder by navigating *within* your newly-cloned folder and running this command...
+Assuming you typed your password in correctly :), a folder with the repository's name (e.g. `DataProcessing-BestPractices`) should have been created with git tracking in that folder.  Check to make sure that the folder of files have downloaded to the location you specified. You can also check to make sure that git tracking is active in that folder by navigating *within* your newly-cloned folder and running this command...
 ```{bash, eval = F}
 git status
 ```
@@ -56,32 +56,39 @@ git status
 If git is working, you should see something like this...
 `On branch master Your branch is up to date with 'origin/master'. nothing to commit, working tree clean`
 
-## 3. Connect RStudio to git and GitHub
+Congrats! You have successfully "cloned" a git repository from the cloud to your local computer.
+
+## Connect RStudio to git and GitHub
 
 Open RStudio. Find the "Projects" button in the top righthand corner of the RStudio window and select "New Project...". You can also get here by going to File -> New Project.
 
-Select "Existing Directory" and identify the cloned repository folder on your computer. For example, my path is `~/Repos/GWUAnalysesInR2018`. Click "Create Project".
+Select "Existing Directory" and identify the cloned repository folder on your computer. For example, my path is `~/Desktop/DataProcessing-BestPractices`. Click "Create Project".
 
 Now, check to see if git is hooked up correctly. If it is you should see a new tab called "Git" that is sitting next to "Environment" and "History" in your RStudio window. Hopefully you are one of the lucky ones that this works for perfectly. 
 
-RStudio may not be able to find your computer's git software. To check if this is the case, you'll need to know where your git application is on your computer. Open up a Terminal window and type...
+If you aren't so lucky... RStudio may not be able to find your computer's git software. To check if this is the case, you'll need to know where your git application is on your computer. Open up a Terminal window and type...
 ```{bash, eval = F}
 which git
 ```
 
-This command will return the location of git on your computer. Now, you'll need to see if this matches what RStudio thinks it is. Open RStudio and go to Tools -> Global Options. Click on the Git/SVN tab. You should see a field that says "Git executable". Replace this text with the correct path and hopefully you are good to go.Thanks to Santiago and this site (https://github.com/jennybc/happy-git-with-r/issues/8) for figuring this out.
+This command will return the location of git on your computer. Now, you'll need to see if this matches where RStudio thinks git is. Open RStudio and go to Tools -> Global Options. Click on the Git/SVN tab. You should see a field that says "Git executable". Replace this text with the correct path and hopefully you are good to go. Thanks to Santiago and this site (https://github.com/jennybc/happy-git-with-r/issues/8) for figuring this out.
 
 ## Version control within RStudio using git and GitHub
 
 Ok. Now you're probably thinking - what do I do with the stuff in this new "Git" tab. Fortunately it's not too complicated. The "Git" tab keep a running tally of all the files that you have modified since your last commit. If you just cloned the repository you may not have made any changes so there is nothing yet to commit.
 
-### Modify a file
+### Add a file
 
-For practice with the class repository, try modifying something in the folder of materials that you uploaded for your class presentation. 
+For practice, open the cloned repository and add a new R file in the "testing" folder.
+- Open the RStudio project in the cloned repository by either (a) double clicking on the ".Proj" file from your computer's file directory or (b) open RStudio -> File -> Open Project -> navigate to the .Proj file on your computer
+- Create a new R script by going to File -> New File -> R Script
+- Add text, e.g. # here's my new R script!
+- Save it in the "testing folder" with a unique name, e.g. "marissas_script.R"
+
+As soon as you save this new file, your git software takes notice because something has changed in this repository/project folder. Check out the "Git" window in RStudio. You should see your new file listed with a green "A" for "added". Later on when you modify existing files, you will see that file name with a blue "M" for "modified" next to it. 
 
 Kind of an aside, but something good to notice at this point if you haven't already. Because you are working in an RStudio "Project", the cloned repository folder is your working directory by default. If you don't believe me, type `getwd()` into your R console. This means that the "Files" tab in your RStudio window gets set to that folder. You can click on folders and files from with RStudio "Files" to quickly open a file in your working directory.
 
-For example, I'm going to click on `Workflow_Management`, then `code`, and open the file `code_identifyPhotos.R`. Then I'm going to add a secret message to the top of the file. Once I save the file, it will pop up in the "Git" window with a blue "M" next to the file name.  That means that the file has been modified.
 
 ### Make a commit
 

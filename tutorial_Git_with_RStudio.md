@@ -1,11 +1,9 @@
 How to use git and GitHub with RStudio
 ================
 Marissa Lee
-11/28/2018
+12/18/2018
 
-There can be headaches involved in getting git, GitHub, and RStudio to all play nice together. Here's a tutorial based on our mini focus group during class today.
-
-Hopefully this tutorial empowers more folks to give it a try.
+There can be headaches involved in getting git, GitHub, and RStudio to all play nice together. Here's a tutorial for getting started. Hopefully this tutorial empowers more folks to give it a try.
 
 Getting started
 ---------------
@@ -16,8 +14,8 @@ Getting started
     -   Mac users -- You should already have Terminal loaded on your computer. Type "Terminal" in spotlight search to find and open it up. Alternatively you can access it by going to `Applications/Utilities/Terminal`
     -   PC users -- The easiest thing to do is download "git for Windows" (<http://gitforwindows.org>). This will set you up with BASH emulation software ("git BASH") that is largely equivalent to the Mac Terminal. You will also get "git" software in this installation. More about "git" later. Atlassian's site has step-by-step instructions for installing this <https://www.atlassian.com/git/tutorials/install-git#windows>.
 
-1. Check that you have git installed
-------------------------------------
+Check that you have git installed
+---------------------------------
 
 Open a Terminal window and simply type this.
 
@@ -32,8 +30,8 @@ Then, woohoo you have git. Let's take a sec to appreciate that this is very diff
 -   *git*: A piece of software that your computer uses to keep track of changes within a given folder. More specifically, this software will "watch" files folders that you choose and keep a detailed log of what those changes are and when they happened.
 -   *GitHub*: A website that hosts git-related data.
 
-2. Clone a GitHub repository using the Terminal
------------------------------------------------
+Clone a GitHub repository using the Terminal
+--------------------------------------------
 
 In the Terminal, navigate to a folder that you would like to clone the repository into. The bash command `cd` means "change directory". For example, I want to navigate to my Desktop, so I'll enter this. If you need some tips on how to navigate folders on your computer using bash, I like this resource: <http://jonibologna.com/command-line-primer-primer/>
 
@@ -55,8 +53,8 @@ git status
 
 If git is working, you should see something like this... `On branch master Your branch is up to date with 'origin/master'. nothing to commit, working tree clean`
 
-3. Connect RStudio to git and GitHub
-------------------------------------
+Connect RStudio to git and GitHub
+---------------------------------
 
 Open RStudio. Find the "Projects" button in the top righthand corner of the RStudio window and select "New Project...". You can also get here by going to File -&gt; New Project.
 
