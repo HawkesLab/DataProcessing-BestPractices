@@ -80,9 +80,10 @@ Ok. Now you're probably thinking - what do I do with the stuff in this new "Git"
 ### Add a file
 
 For practice, open the cloned repository and add a new R file in the "testing" folder.
+
 - Open the RStudio project in the cloned repository by either (a) double clicking on the ".Proj" file from your computer's file directory or (b) open RStudio -> File -> Open Project -> navigate to the .Proj file on your computer
 - Create a new R script by going to File -> New File -> R Script
-- Add text, e.g. # here's my new R script!
+- Add text, e.g. `# here's my new R script!`
 - Save it in the "testing folder" with a unique name, e.g. "marissas_script.R"
 
 As soon as you save this new file, your git software takes notice because something has changed in this repository/project folder. Check out the "Git" window in RStudio. You should see your new file listed with a green "A" for "added". Later on when you modify existing files, you will see that file name with a blue "M" for "modified" next to it. 
@@ -92,37 +93,52 @@ Kind of an aside, but something good to notice at this point if you haven't alre
 
 ### Make a commit
 
-Click on the button "Commit" within the "Git" window. It will open an new window. Click the checkbox next to the file that you just modified to "stage" it for this commit. A nice feature is that you can see exactly which lines you modified when you highlight each file to "stage" it. 
+Click on the button "Commit" within RStudio's "Git" window. It will open an new window. Click the checkbox next to the file that you just added to "stage" it for this commit. When you highlight each file to "stage" it, you'll be able to see line-by-line changes which is particularly helpful for when you are modifying an existing script.
 
-Don't forget to write a commit message in the text box. You'll want to describe the change you are about to save (and you actually can't make a commit without a message by design). Once you've got your message, e.g. "first commit", click the "Commit" button. This will open a message box that you can close.
+Don't forget to write a commit message in the text box. You'll want to describe the change you are about to save (and you actually can't make a commit without a message by design). Once you've got your message, e.g. "adds my test script", click the "Commit" button. This will open a message box that you can close.
 
 ### Push to GitHub
 
 Now if you look closely at the commit window (it says "RStudio: Review Changes") you will see a new banner that has a blue "i" and "Your branch is ahead or 'origin/master' by 1 commit". This means that your local computer's version of this repository differs from the GitHub version by 1 commit.  In order to push your changes up to GitHub, you need to click the green arrow "Push" in the top right corner of that window.
 
-Woohoo! You have made a change, committed it, and pushed it up to GitHub. Now's the time to open up your browser, go to GitHub, and admire your fine work.
+Woohoo! You have made a change, committed it, and pushed it up to GitHub in the cloud. Now's the time to open up your browser, go to GitHub, and admire your fine work.
 
 ### Pull from GitHub
 
 Did someone add cool code to the GitHub repository that you want to play with? Go ahead and "pull" down all new updates by clicking the blue "Pull" arrow.
 
+Once the pull is complete, you should see new scripts from your collaborators in the testing folder. Check it out.
+
+
+### Modify an existing file
+
+To practice modifying an existing file, try adding a message to someone else's script. For example, I am going to open up `marissas_script.R` and add `# ...but it doesn't do anything yet.`
+
+- Save the modified file
+- Check that there is a blue "M" for "modified" next to this filename in your "Git" window of RStudio
+- Stage the change by checking the "staged" box next to the modified file
+- Click "Commit"
+- Write an appropriate commit message and "Commit"
+- "Push" that commit to the cloud for all to see by clicking the green "Push" arrow
+
 Remember that the purpose of git and GitHub is to do version control, so even if you change something on GitHub it can easily be reversed by making a change, another commit, and push.
+
 
 ### Branching
 
 Git branching is a topic for another day.  I tend to work linearly (i.e. update the master branch directly) and avoid this issue altogether most of the time. An understanding of how git does branching is useful if you are collaborating with a lot of people and are worried about having the master branch on GitHub function for users. 
 
+
+### More resources
+
 If you want to learn more, I'd recommend checking out Atlassian's resources. Atlassian hosts "Bitbucket", which is an alternative online host for git data (i.e. a GitHub competitor). More people use GitHub, but I think Atlassian does a better job of explaining how git works.
 
-Git cheat sheet for using git from the command line: https://www.atlassian.com/git/tutorials/atlassian-git-cheatsheet
+Cheat sheet for using git from the command line: https://www.atlassian.com/git/tutorials/atlassian-git-cheatsheet
 
 Description of how to "undo" things in git:
 https://www.atlassian.com/git/tutorials/undoing-changes
 
-### Other info
-
-From Emily K.:
-Here's the instruction to get a free premium student account with private repositories https://help.github.com/articles/applying-for-a-student-developer-pack/
+How to get a free premium GitHub account with a ".edu" email https://help.github.com/articles/applying-for-a-student-developer-pack/
 
 
 
