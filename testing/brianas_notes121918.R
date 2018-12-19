@@ -9,3 +9,6 @@
 
 #commit your file and updates to your local (origin) directory which is watched by the git software,
 # then push to the master branch -- may have to pull first if there has been updates from a collaborator
+
+
+##Nathaniel is sabotaging your notes. Whoopsie daisies
