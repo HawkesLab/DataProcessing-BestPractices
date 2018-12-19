@@ -5,3 +5,7 @@
 #download vs. clone - not the same, cloning allows the git software to keep an eye on it
 
 #Rproj files are useful for sharing
+
+
+#commit your file and updates to your local (origin) directory which is watched by the git software,
+# then push to the master branch -- may have to pull first if there has been updates from a collaborator
